@@ -11,6 +11,9 @@ class Address(models.Model):
     city_name = models.CharField(max_length=50)
     last_update = models.DateTimeField(blank=True, null=True)
 
+    def __str__(self):
+        return f"{self.street_name} No. {self.street_number}, {self.city_name}"
+
     class Meta:
         managed = False
         db_table = 'address'
@@ -27,6 +30,9 @@ class Book(models.Model):
     publisher = models.ForeignKey('Publisher', models.DO_NOTHING)
     price = models.CharField(max_length=50, blank=True, null=True)
 
+    def __str__(self):
+        return f"{self.title} - {self.author_name}"
+
     class Meta:
         managed = False
         db_table = 'book'
@@ -39,6 +45,9 @@ class Customer(models.Model):
     email = models.CharField(max_length=50)
     address = models.ForeignKey(Address, models.DO_NOTHING)
     last_update = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.customer_id} - {self.first_name} {self.last_name} ({self.email})"
 
     class Meta:
         managed = False
