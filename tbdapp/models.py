@@ -94,6 +94,9 @@ class Publisher(models.Model):
     last_update = models.DateTimeField(blank=True, null=True)
     publisher_name = models.CharField(max_length=50, blank=True, null=True)
 
+    def __str__(self):
+        return f"{self.publisher_name}"
+
     class Meta:
         managed = False
         db_table = 'publisher'
@@ -119,6 +122,9 @@ class Store(models.Model):
     store_id = models.AutoField(primary_key=True)
     last_update = models.DateTimeField(blank=True, null=True)
     address = models.ForeignKey(Address, models.DO_NOTHING)
+
+    def __str__(self):
+        return f"{self.store_id} - {self.address.city_name}"
 
     class Meta:
         managed = False
